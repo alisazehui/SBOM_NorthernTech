@@ -16,3 +16,19 @@ A command-line tool for generating Software Bill of Materials (SBOM) from source
 
 ```bash
 python3 sbom.py <directory_path>
+
+
+## Known Issues / Limitations 
+- Only supports Python requirements in the form `name==version`. Other specifiers like `>=`, `<=`, `~=`, or environment markers are currently ignored.
+- Only writes to CSV and JSON in the specified root directory — no custom output path.
+- Parsing performance may reduce with large directory structures or huge files.
+
+
+
+## Future Ideas / Possible Improvements 
+- Support more complex Python requirement formats 
+- Parallel scanning for large directory sets.
+- Build a UI dashboard for exploring SBOMs interactively.
+- Support additional ecosystems: Maven, Gradle, Go, Rust, Ruby, PHP, etc.
+
+
