@@ -16,7 +16,7 @@ A command-line tool for generating Software Bill of Materials (SBOM) from source
 
 ```bash
 python3 sbom.py <directory_path>
-
+```
 
 ## Known Issues / Limitations 
 - Only supports Python requirements in the form `name==version`. Other specifiers like `>=`, `<=`, `~=`, or environment markers are currently ignored.
