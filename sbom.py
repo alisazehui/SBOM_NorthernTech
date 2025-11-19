@@ -6,15 +6,29 @@ from pathlib import Path
 from typing import List, Dict
 
 def main() -> None:
+    # Checks for valid command line arguments
+    if len(sys.argv) != 2:
+        print(f"Error: Usage: python3 sbom.py <directory_path>")
+        sys.exit(1)
+
     directory = Path(sys.argv[1]).resolve()    # Converts command-line directory into absolute path
 
-    if not directory.is_dir():          # Checks whether directory exists
+    # Checks whether directory exists
+    if not directory.exists():
+        print(f"Error: '{directory}' does not exist")
+        sys.exit(1) 
+
+    if not directory.is_dir():          
         print(f"Error: '{directory}' is not a directory")
         sys.exit(1)
 
     # Recursive search finding files within directory and all subdirectories 
     requirements_files = list(directory.rglob("requirements.txt"))      
     package_files = list(directory.rglob("package.json"))
+
+    if not requirements_files and not package_files:
+        print(f"Error: No requirements.txt or package.json files found in '{directory}'")
+        sys.exit(1)
 
     dependencies = []       # List to store all discovered dependencies
     respositories = set()       # Set to store unique repositories (avoiding duplicates)
